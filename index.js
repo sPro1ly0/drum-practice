@@ -2,6 +2,7 @@ document.querySelectorAll('button').forEach(b =>
     b.addEventListener('click', () => {
         let buttonKey = b.innerHTML;
         handleSound(buttonKey);
+        buttonAnimation(buttonKey);
     })
 );
 
@@ -11,9 +12,10 @@ document.querySelectorAll('button').forEach(b =>
 //     handleSound(this.innerHTML);
 // }
 
-document.addEventListener('keydown', (e) => 
-    handleSound(e.key)
-);
+document.addEventListener('keydown', (e) => {
+    handleSound(e.key);
+    buttonAnimation(e.key); 
+});
 
 function handleSound(key) {
 
@@ -49,4 +51,11 @@ function handleSound(key) {
         default:
             console.log(button);
     }
+}
+
+function buttonAnimation(currentKey) {
+   let activeButton = document.querySelector(`.${currentKey}`);
+   activeButton.classList.add('pressed');
+
+   setTimeout(() => activeButton.classList.remove('pressed'), 100);
 }
