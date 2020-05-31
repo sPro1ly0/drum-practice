@@ -1,13 +1,23 @@
-document.querySelectorAll('button').forEach(b =>     
-    b.addEventListener('click', handleClick)
+document.querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => {
+        let buttonKey = b.innerHTML;
+        handleSound(buttonKey);
+    })
 );
 
-function handleClick() {
-    // console.log(this); // <button class="w drum">a</button>
-    // console.log(this.innerHTML); // w
+// function handleClick() {
+//     // console.log(this); // <button class="w drum">a</button>
+//     // console.log(this.innerHTML); // w
+//     handleSound(this.innerHTML);
+// }
 
-    let button = this.innerHTML;
-    switch (button) {
+document.addEventListener('keydown', (e) => 
+    handleSound(e.key)
+);
+
+function handleSound(key) {
+
+    switch (key) {
         case 'w':
             let tom1 = new Audio('./sounds/tom-1.mp3');
             tom1.play();
